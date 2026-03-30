@@ -1,5 +1,4 @@
 package com.narxoz.rpg.command;
-
 import com.narxoz.rpg.arena.ArenaFighter;
 
 public class HealCommand implements ActionCommand {
@@ -14,6 +13,13 @@ public class HealCommand implements ActionCommand {
 
     @Override
     public void execute() {
+     if (target.getHealPotions() > 0) {
+        int initialVitality = target.getHealth();
+        target.heal(healAmount);
+        this.actualHealApplied = target.getHealth() - initialVitality;
+    } else {
+        this.actualHealApplied = 0;
+    }
         // TODO: Check whether the target has heal potions remaining before healing.
         // TODO: Heal the target by healAmount using target.heal(int).
         // TODO: Store how much was actually applied in actualHealApplied (for undo).
@@ -22,6 +28,9 @@ public class HealCommand implements ActionCommand {
 
     @Override
     public void undo() {
+        if (this.actualHealApplied > 0) {
+        target.takeDamage(this.actualHealApplied);
+    }
         // TODO: Remove the heal that was applied.
         // Note: Use actualHealApplied (what was actually gained), not healAmount.
         // Hint: call target.takeDamage(actualHealApplied) to reverse the heal.
@@ -30,6 +39,9 @@ public class HealCommand implements ActionCommand {
     @Override
     public String getDescription() {
         // TODO: Return a readable summary, e.g. "Heal for 20 HP".
-        return "TODO";
+        return "Consume elixir to recover up to " + healAmount + " units of health";
+       
     }
 }
+
+
