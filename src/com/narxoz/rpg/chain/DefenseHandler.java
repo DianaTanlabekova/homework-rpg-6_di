@@ -18,8 +18,6 @@ public abstract class DefenseHandler {
 
 
     protected void passToNext(int damage, ArenaFighter target) {
-        // TODO: If damage is still greater than 0 and a next handler exists, forward it.
-        // TODO: What should happen when there is no next handler but damage is nonzero?
         if (next != null) {
             next.handle(damage, target);
         }

@@ -23,12 +23,6 @@ public class DodgeHandler extends DefenseHandler {
         passToNext(incomingDamage, target);
     }
 
-
-        // TODO: Generate a random double between 0.0 and 1.0 using random.nextDouble().
-        // TODO: If the roll is less than dodgeChance, the attack is fully dodged:
-        //       - Print a dodge message (e.g. "[Dodge] Attack evaded!")
-        //       - Stop the chain — do NOT call passToNext.
-        // TODO: If the dodge fails, pass the full incomingDamage to the next handler.
     }
 }
 
